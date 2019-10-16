@@ -1,7 +1,7 @@
-package spring.znevzz.reactive.database.gateway.dao;
+package spring.znevzz.reactive.file.gateway.dao;
 
 import reactor.core.publisher.Flux;
-import spring.znevzz.reactive.database.gateway.model.FileResource;
+import spring.znevzz.reactive.file.gateway.model.FileResource;
 
 public interface FileRepository<T> {
 

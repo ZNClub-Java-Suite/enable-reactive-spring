@@ -1,4 +1,4 @@
-package spring.znevzz.reactive.database.gateway.model;
+package spring.znevzz.reactive.file.gateway.model;
 
 import java.util.Map;
 

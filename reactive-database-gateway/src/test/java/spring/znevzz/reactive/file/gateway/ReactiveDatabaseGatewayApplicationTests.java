@@ -1,4 +1,4 @@
-package spring.znevzz.reactive.database.gateway;
+package spring.znevzz.reactive.file.gateway;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
