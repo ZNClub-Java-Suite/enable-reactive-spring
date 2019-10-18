@@ -9,6 +9,9 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Hooks;
 import reactor.core.publisher.Mono;
 import spring.znevzz.reactive.client.gateway.dao.LocalFileRepository;
+import spring.znevzz.reactive.client.gateway.model.FileResource;
+
+import java.util.List;
 
 
 @SpringBootApplication
@@ -26,14 +29,18 @@ public class ReactiveFileGatewayApplication {
 class ReactiveFileGatewayController {
 
 	private final LocalFileRepository repository;
+	private final List<FileResource> resources;
 
-	ReactiveFileGatewayController(LocalFileRepository repository) {
+	ReactiveFileGatewayController(LocalFileRepository repository,
+								  List<FileResource> resources) {
 		this.repository = repository;
+		this.resources = resources;
 	}
 
 	@GetMapping(value = "/funds", produces = "application/stream+json")
 	public Flux<String> getFunds() {
-		Flux<String> stringFlux = repository.readComplete(null)
+		Flux<String> stringFlux = repository
+				.readComplete(resources.stream().findAny().orElse(null))
 				.doOnError( error -> log.error(error.getMessage()))
 				;
 		stringFlux.subscribe(this::info);
