@@ -21,13 +21,13 @@ public class JsonFileResource implements FileResource {
 
     @Override
     public String getType() {
-        return "JSON";
+        return FileResourceAttributes.JSON.name();
     }
 
     @Override
     public Map<String, Object> buildConfiguration() {
-        configuration.putIfAbsent("NAME", this.name);
-        configuration.putIfAbsent("LOCATION", this.location);
+        configuration.putIfAbsent(FileResourceAttributes.NAME.name(), this.name);
+        configuration.putIfAbsent(FileResourceAttributes.LOCATION.name(), this.location);
         return new HashMap<>(configuration);
     }
 
