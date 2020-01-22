@@ -15,6 +15,11 @@ public class JsonFileResource implements FileResource {
     }
 
     @Override
+    public String getName() {
+        return this.name;
+    }
+
+    @Override
     public void setLocation(String location) {
         this.location = location;
     }

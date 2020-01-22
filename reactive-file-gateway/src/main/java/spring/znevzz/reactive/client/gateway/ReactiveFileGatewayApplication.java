@@ -44,12 +44,14 @@ class ReactiveFileGatewayController {
 	@GetMapping(value = "/funds", produces = "application/stream+json")
 	public Flux<String> getFunds() throws IOException {
 		Flux<String> stringFlux = repository
-				.readComplete(resources.stream().findAny().orElse(null))
-				.doOnError( error -> log.error(error.getMessage()))
-				;
+				.readComplete(
+						resources.stream()
+								.filter(fileResource -> "funds".equals(fileResource.getName()))
+								.findFirst()
+								.orElseThrow( () -> new RuntimeException("No FileResource Found for /funds"))
+				)
+				.doOnError( error -> log.error(error.getMessage()));
 		stringFlux.subscribe(this::info);
-
-
 		return stringFlux
 				.limitRequest(2)
 //				.delayElements(Duration.ofSeconds(5))
