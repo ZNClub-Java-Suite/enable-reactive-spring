@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit4.SpringRunner;
 import spring.znevzz.reactive.client.gateway.model.FileResource;
 
+import java.io.IOException;
+
 @RunWith(SpringRunner.class)
 public class LocalFileRepositoryTest {
 
@@ -27,7 +29,7 @@ public class LocalFileRepositoryTest {
     }
 
     @Test
-    public void demo() {
+    public void demo() throws IOException {
         fileRepository.readComplete(fileResource);
     }
 }
